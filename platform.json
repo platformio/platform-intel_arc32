@@ -31,7 +31,7 @@
   "packages": {
     "toolchain-intelarc32": {
       "type": "toolchain",
-      "version": "~1.40803.0"
+      "version": ">=1.40802.0,<1.40804.0"
     },
     "framework-arduinointel": {
       "type": "framework",
