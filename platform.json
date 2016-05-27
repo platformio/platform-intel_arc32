@@ -36,7 +36,7 @@
     "framework-arduinointel": {
       "type": "framework",
       "optional": true,
-      "version": "~1.10005.0"
+      "version": "~1.10608.0"
     },
     "tool-arduino101load": {
       "type": "uploader",
