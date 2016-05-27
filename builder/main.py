@@ -110,8 +110,8 @@ env.Replace(
     SIZEPRINTCMD='$SIZETOOL -B -d $SOURCES',
 
     UPLOADER="arduino101load",
-    DFUUTIL=join(env.DevPlatform().get_package_dir("tool-arduino101load"),
-                 "dfu-util"),
+    DFUUTIL=join(env.DevPlatform().get_package_dir(
+                 "tool-arduino101load") or "", "dfu-util"),
     UPLOADCMD='$UPLOADER "$DFUUTIL" $SOURCES $UPLOADERFLAGS verbose',
 
     PROGNAME="firmware",
