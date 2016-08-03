@@ -106,7 +106,7 @@ env.Replace(
     UPLOADERFLAGS=[
         '"$UPLOAD_PORT"'
     ],
-    DFUUTIL=join(env.DevPlatform().get_package_dir(
+    DFUUTIL=join(env.PioPlatform().get_package_dir(
                  "tool-arduino101load") or "", "dfu-util"),
     UPLOADCMD='$UPLOADER "$DFUUTIL" $SOURCES $UPLOADERFLAGS verbose',
 
