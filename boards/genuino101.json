@@ -1,0 +1,31 @@
+{
+  "build": {
+    "core": "arc32", 
+    "cpu": "quarkse_em", 
+    "extra_flags": "-DARDUINO_ARCH_ARC32 -D__ARDUINO_ARC__", 
+    "f_cpu": "32000000L", 
+    "hwids": [
+      [
+        "0x8087", 
+        "0x0AB6"
+      ]
+    ], 
+    "ldscript": "flash.ld", 
+    "mcu": "ARCv2EM", 
+    "usb_product": "Genuino 101", 
+    "variant": "arduino_101"
+  }, 
+  "frameworks": [
+    "arduino"
+  ], 
+  "name": "Arduino/Genuino 101", 
+  "upload": {
+    "maximum_ram_size": 81920, 
+    "maximum_size": 155648, 
+    "protocol": "script", 
+    "require_upload_port": true, 
+    "use_1200bps_touch": true
+  }, 
+  "url": "https://www.arduino.cc/en/Main/ArduinoBoard101", 
+  "vendor": "Intel"
+}
