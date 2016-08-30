@@ -56,8 +56,7 @@ env.Prepend(
         join(FRAMEWORK_DIR, "system", "libarc32_arduino101", "framework",
              "include"),
         join(FRAMEWORK_DIR, "system", "libarc32_arduino101", "bootcode"),
-        join("$BUILD_DIR", "IntelDrivers"),
-        join("$BUILD_DIR", "FrameworkArduino")
+        join(FRAMEWORK_DIR, "cores", env.BoardConfig().get("build.core"))
     ],
 
     LIBPATH=[
@@ -90,7 +89,8 @@ libs = []
 if "build.variant" in env.BoardConfig():
     env.Append(
         CPPPATH=[
-            join("$BUILD_DIR", "FrameworkArduinoVariant")
+            join(FRAMEWORK_DIR, "variants",
+                 env.BoardConfig().get("build.variant"))
         ]
     )
     libs.append(env.BuildLibrary(
