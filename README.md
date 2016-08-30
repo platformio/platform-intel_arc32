@@ -16,5 +16,5 @@ ARC embedded processors are a family of 32-bit CPUs that are widely used in SoC 
 > platformio platform install intel_arc32
 
 # install development version
-> platformio platform install https://github.com/platformio/platform-intel_arc32/archive/develop.zip
+> platformio platform install https://github.com/platformio/platform-intel_arc32.git
 ```

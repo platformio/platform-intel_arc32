@@ -1,14 +1,23 @@
 language: python
 python:
-    - "2.7"
+  - "2.7"
 
 env:
-    - PLATFORMIO_PROJECT_DIR=examples/arduino-blink
-    - PLATFORMIO_PROJECT_DIR=examples/arduino-internal-libs
+  - PLATFORMIO_PROJECT_DIR=examples/arduino-blink
+  - PLATFORMIO_PROJECT_DIR=examples/arduino-internal-libs
 
 install:
-    - pip install -U https://github.com/platformio/platformio/archive/feature/platformio-30.zip
-    - platformio platform install file://.
+  - pip install -U https://github.com/platformio/platformio/archive/develop.zip
+  - platformio platform install file://.
 
 script:
-    - platformio run -d $PLATFORMIO_PROJECT_DIR
+  - platformio run -d $PLATFORMIO_PROJECT_DIR
+
+notifications:
+  email: false
+
+  slack:
+    rooms:
+      secure: QxtstbaWvjFfZkf8brNsXrLhmbxOTJFerNKLhsWL1ti5B0XAPT1PR6conx1znJs79CJGgWGATfu/KnY07XgM6+Sc4yDS4OvG0+/71WUwGyMySrTxnrUowg2uKjXFk+f1HGpWa5Nb4QgkuVHVR2MLeo821saC2WC8tkB3l06lw3HDgU9gpDJEC36OAcYF7zZf4sExM4kIXtuW7Ye9WlJHGPhkkwaLZTxkKepHccdZElembJ8X2LIR+q+7ZITtzFd5prgslqS093p+/orQ6dJHYSlGaYTuXrDbZhuMLE7okAdp1nmAb/PXnEs0xdOwT5mrGLKswr6Mk+xiclUpLa9sT7Ou2JCAjv4LpJkRmi0gpGAXCkdJFSuDIc5EvOmqvo0t6vjhChFRitR3nVAHhHcPzXym05xSmGFNsGmX7s2Bm0Ue56ZpdE7kLztS/UIR089Nj6XvvQxsal8GJwniwTCapZ93bMCiLTr/KtXUgXnXHf6t7GgYKLeTRF9JP1vj/S2279MtvXyZMfg9MOP9DKaPPirGIu6BzeLBjDT6TKxHMGF7nqj5O6IYTjePiYjZCYVoRX10ARDtWumE6Ho4kwS/tya88GwR5F9Me2rIGcPSyaXdVcbRZcIkKeJnr/Ww5/2qLAztG3mPxrXt3DB8zu5gIKHO3rBV4+zDf2gz/qdYTJ8=
+    on_failure: always
+    on_success: change
