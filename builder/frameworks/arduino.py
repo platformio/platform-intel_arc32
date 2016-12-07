@@ -35,17 +35,17 @@ assert isdir(FRAMEWORK_DIR)
 
 # USB flags
 ARDUINO_USBDEFINES = [
-    "ARDUINO=10608",
-    "ARDUINO_FRAMEWORK=%s" % FRAMEWORK_VERSION.split(".")[1]
+    ("ARDUINO", 10610),
+    ("ARDUINO_FRAMEWORK", FRAMEWORK_VERSION.split(".")[1])
 ]
 if "build.usb_product" in env.BoardConfig():
     ARDUINO_USBDEFINES += [
-        "USB_VID=%s" % env.BoardConfig().get("build.hwids")[0][0],
-        "USB_PID=%s" % env.BoardConfig().get("build.hwids")[0][1],
-        'USB_PRODUCT=\\"%s\\"' % (
-            env.BoardConfig().get("build.usb_product", "").replace('"', "")),
-        'USB_MANUFACTURER=\\"%s\\"' % (
-            env.BoardConfig().get("vendor", "").replace('"', ""))
+        ("USB_VID", env.BoardConfig().get("build.hwids")[0][0]),
+        ("USB_PID", env.BoardConfig().get("build.hwids")[0][1]),
+        ("USB_PRODUCT", '\\"%s\\"' %
+         env.BoardConfig().get("build.usb_product", "").replace('"', "")),
+        ("USB_MANUFACTURER", '\\"%s\\"' %
+         env.BoardConfig().get("vendor", "").replace('"', ""))
     ]
 
 env.Prepend(

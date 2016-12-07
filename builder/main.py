@@ -66,11 +66,11 @@ env.Replace(
     ],
 
     CPPDEFINES=[
-        "F_CPU=$BOARD_F_CPU",
+        ("F_CPU", "$BOARD_F_CPU"),
         "ARDUINO_ARC32_TOOLS",
         "__CPU_ARC__",
-        "CLOCK_SPEED=%d" % (int(
-            env.BoardConfig().get("build.f_cpu").replace("L", "")) / 1000000),
+        ("CLOCK_SPEED",
+         int(env.BoardConfig().get("build.f_cpu").replace("L", "")) / 1000000),
         "CONFIG_SOC_GPIO_32",
         "CONFIG_SOC_GPIO_AON",
         "INFRA_MULTI_CPU_SUPPORT",
@@ -167,7 +167,7 @@ else:
     target_firm = env.ElfToBin(join("$BUILD_DIR", "firmware"), target_elf)
 
 AlwaysBuild(env.Alias("nobuild", target_firm))
-target_buildprog = env.Alias("buildprog", target_firm)
+target_buildprog = env.Alias("buildprog", target_firm, target_firm)
 
 #
 # Target: Print binary size
