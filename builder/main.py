@@ -70,7 +70,8 @@ env.Replace(
         "ARDUINO_ARC32_TOOLS",
         "__CPU_ARC__",
         ("CLOCK_SPEED",
-         int(env.BoardConfig().get("build.f_cpu").replace("L", "")) / 1000000),
+         int(int(env.BoardConfig().get(
+            "build.f_cpu").replace("L", "")) / 1000000)),
         "CONFIG_SOC_GPIO_32",
         "CONFIG_SOC_GPIO_AON",
         "INFRA_MULTI_CPU_SUPPORT",
