@@ -39,6 +39,8 @@ env.Replace(
 
     ASFLAGS=["-x", "assembler-with-cpp"],
 
+    CFLAGS=["-std=gnu11"],
+
     CCFLAGS=[
         "-g",
         "-Os",
@@ -62,7 +64,8 @@ env.Replace(
     CXXFLAGS=[
         "-fno-rtti",
         "-std=c++11",
-        "-fno-exceptions"
+        "-fno-exceptions",
+        "-fcheck-new"
     ],
 
     CPPDEFINES=[
@@ -101,11 +104,18 @@ env.Replace(
 
     UPLOADER="arduino101load",
     UPLOADERFLAGS=[
-        '"$UPLOAD_PORT"'
+        ("-dfu", join(env.PioPlatform().get_package_dir(
+                 "tool-arduino101load") or "", "dfu-util")),
+        ("-bin", "$SOURCES"),
+        ("-port", '"$UPLOAD_PORT"'),
+        ("-ble_fw_str", '\"ATP1BLE00R-1631C4439\"'),
+        ("-ble_fw_pos", 169984),
+        ("-rtos_fw_str", '\"\"'),
+        ("-rtos_fw_pos", 0),
+        ("-core", "2.0.0"),
+        "-v"
     ],
-    DFUUTIL=join(env.PioPlatform().get_package_dir(
-                 "tool-arduino101load") or "", "dfu-util"),
-    UPLOADCMD='$UPLOADER "$DFUUTIL" $SOURCES $UPLOADERFLAGS verbose',
+    UPLOADCMD='$UPLOADER $UPLOADERFLAGS',
 
     PROGNAME="firmware",
     PROGSUFFIX=".elf"

@@ -33,23 +33,13 @@ FRAMEWORK_DIR = platform.get_package_dir("framework-arduinointel")
 FRAMEWORK_VERSION = platform.get_package_version("framework-arduinointel")
 assert isdir(FRAMEWORK_DIR)
 
-# USB flags
-ARDUINO_USBDEFINES = [
-    ("ARDUINO", 10610),
-    ("ARDUINO_FRAMEWORK", FRAMEWORK_VERSION.split(".")[1])
-]
-if "build.usb_product" in env.BoardConfig():
-    ARDUINO_USBDEFINES += [
-        ("USB_VID", env.BoardConfig().get("build.hwids")[0][0]),
-        ("USB_PID", env.BoardConfig().get("build.hwids")[0][1]),
-        ("USB_PRODUCT", '\\"%s\\"' %
-         env.BoardConfig().get("build.usb_product", "").replace('"', "")),
-        ("USB_MANUFACTURER", '\\"%s\\"' %
-         env.BoardConfig().get("vendor", "").replace('"', ""))
-    ]
-
 env.Prepend(
-    CPPDEFINES=ARDUINO_USBDEFINES,
+    CPPDEFINES=[
+        ("ARDUINO", 10803),
+        "CONFIG_BLUETOOTH_PERIPHERAL",
+        "CONFIG_BLUETOOTH_CENTRAL",
+        "CONFIG_BLUETOOTH_GATT_CLIENT"
+    ],
     CPPPATH=[
         join(FRAMEWORK_DIR, "system", "libarc32_arduino101", "drivers"),
         join(FRAMEWORK_DIR, "system", "libarc32_arduino101", "common"),
