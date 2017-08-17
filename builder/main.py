@@ -31,6 +31,7 @@ env.Replace(
     AS="arc-elf32-as",
     CC="arc-elf32-gcc",
     CXX="arc-elf32-g++",
+    GDB="arc-elf32-gdb",
     OBJCOPY="arc-elf32-objcopy",
     RANLIB="arc-elf32-ranlib",
     SIZETOOL="arc-elf32-size",
