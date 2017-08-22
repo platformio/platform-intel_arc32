@@ -14,7 +14,10 @@
     "mcu": "ARCv2EM", 
     "usb_product": "Genuino 101", 
     "variant": "arduino_101"
-  }, 
+  },
+  "connectivity": [
+    "bluetooth"
+  ],
   "frameworks": [
     "arduino"
   ], 
