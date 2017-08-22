@@ -36,7 +36,7 @@ env.Replace(
     RANLIB="arc-elf32-ranlib",
     SIZETOOL="arc-elf32-size",
 
-    ARFLAGS=["rcs"],
+    ARFLAGS=["rc"],
 
     ASFLAGS=["-x", "assembler-with-cpp"],
 
