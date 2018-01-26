@@ -30,7 +30,6 @@ env = DefaultEnvironment()
 platform = env.PioPlatform()
 
 FRAMEWORK_DIR = platform.get_package_dir("framework-arduinointel")
-FRAMEWORK_VERSION = platform.get_package_version("framework-arduinointel")
 assert isdir(FRAMEWORK_DIR)
 
 env.Prepend(
