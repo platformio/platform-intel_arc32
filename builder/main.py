@@ -43,7 +43,6 @@ env.Replace(
     CFLAGS=["-std=gnu11"],
 
     CCFLAGS=[
-        "-g",
         "-Os",
         "-ffunction-sections",
         "-fdata-sections",
