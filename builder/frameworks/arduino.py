@@ -87,12 +87,10 @@ if "build.variant" in env.BoardConfig():
         join(FRAMEWORK_DIR, "variants", env.BoardConfig().get("build.variant"))
     ))
 
-envsafe = env.Clone()
-
 if env.subst("$BOARD") == "genuino101":
     libs.append("libarc32drv_arduino101")
 
-libs.append(envsafe.BuildLibrary(
+libs.append(env.BuildLibrary(
     join("$BUILD_DIR", "FrameworkArduino"),
     join(FRAMEWORK_DIR, "cores", env.BoardConfig().get("build.core"))
 ))
