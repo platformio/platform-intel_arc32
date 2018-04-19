@@ -34,7 +34,7 @@ assert isdir(FRAMEWORK_DIR)
 
 env.Prepend(
     CPPDEFINES=[
-        ("ARDUINO", 10803),
+        ("ARDUINO", 10805),
         "CONFIG_BLUETOOTH_PERIPHERAL",
         "CONFIG_BLUETOOTH_CENTRAL",
         "CONFIG_BLUETOOTH_GATT_CLIENT"
