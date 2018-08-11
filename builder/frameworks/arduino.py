@@ -30,12 +30,11 @@ env = DefaultEnvironment()
 platform = env.PioPlatform()
 
 FRAMEWORK_DIR = platform.get_package_dir("framework-arduinointel")
-FRAMEWORK_VERSION = platform.get_package_version("framework-arduinointel")
 assert isdir(FRAMEWORK_DIR)
 
 env.Prepend(
     CPPDEFINES=[
-        ("ARDUINO", 10803),
+        ("ARDUINO", 10805),
         "CONFIG_BLUETOOTH_PERIPHERAL",
         "CONFIG_BLUETOOTH_CENTRAL",
         "CONFIG_BLUETOOTH_GATT_CLIENT"
@@ -88,12 +87,10 @@ if "build.variant" in env.BoardConfig():
         join(FRAMEWORK_DIR, "variants", env.BoardConfig().get("build.variant"))
     ))
 
-envsafe = env.Clone()
-
 if env.subst("$BOARD") == "genuino101":
     libs.append("libarc32drv_arduino101")
 
-libs.append(envsafe.BuildLibrary(
+libs.append(env.BuildLibrary(
     join("$BUILD_DIR", "FrameworkArduino"),
     join(FRAMEWORK_DIR, "cores", env.BoardConfig().get("build.core"))
 ))
