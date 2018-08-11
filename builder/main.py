@@ -38,6 +38,27 @@ env.Replace(
 
     ARFLAGS=["rc"],
 
+    SIZEPRINTCMD='$SIZETOOL -B -d $SOURCES',
+
+    UPLOADER="arduino101load",
+    UPLOADERFLAGS=[
+        ("-dfu", join(env.PioPlatform().get_package_dir(
+                 "tool-arduino101load") or "", "dfu-util")),
+        ("-bin", "$SOURCES"),
+        ("-port", '"$UPLOAD_PORT"'),
+        ("-ble_fw_str", '\"ATP1BLE00R-1631C4439\"'),
+        ("-ble_fw_pos", 169984),
+        ("-rtos_fw_str", '\"\"'),
+        ("-rtos_fw_pos", 0),
+        ("-core", "2.0.0"),
+        "-v"
+    ],
+    UPLOADCMD='$UPLOADER $UPLOADERFLAGS',
+
+    PROGSUFFIX=".elf"
+)
+
+env.Append(
     ASFLAGS=["-x", "assembler-with-cpp"],
 
     CFLAGS=["-std=gnu11"],
@@ -100,29 +121,6 @@ env.Replace(
 
     LIBS=["nsim", "c", "m", "gcc"],
 
-    SIZEPRINTCMD='$SIZETOOL -B -d $SOURCES',
-
-    UPLOADER="arduino101load",
-    UPLOADERFLAGS=[
-        ("-dfu", join(env.PioPlatform().get_package_dir(
-                 "tool-arduino101load") or "", "dfu-util")),
-        ("-bin", "$SOURCES"),
-        ("-port", '"$UPLOAD_PORT"'),
-        ("-ble_fw_str", '\"ATP1BLE00R-1631C4439\"'),
-        ("-ble_fw_pos", 169984),
-        ("-rtos_fw_str", '\"\"'),
-        ("-rtos_fw_pos", 0),
-        ("-core", "2.0.0"),
-        "-v"
-    ],
-    UPLOADCMD='$UPLOADER $UPLOADERFLAGS',
-
-    PROGSUFFIX=".elf"
-)
-
-env.Append(
-    ASFLAGS=env.get("CCFLAGS", [])[:],
-
     BUILDERS=dict(
         ElfToBin=Builder(
             action=env.VerboseAction(" ".join([
@@ -164,6 +162,9 @@ env.Append(
         )
     )
 )
+
+# copy CCFLAGS to ASFLAGS (-x assembler-with-cpp mode)
+env.Append(ASFLAGS=env.get("CCFLAGS", [])[:])
 
 # Allow user to override via pre:script
 if env.get("PROGNAME", "program") == "program":
