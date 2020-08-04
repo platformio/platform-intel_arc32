@@ -4,6 +4,11 @@
   "description": "ARC embedded processors are a family of 32-bit CPUs that are widely used in SoC devices for storage, home, mobile, automotive, and Internet of Things applications.",
   "homepage": "http://www.intel.com/content/www/us/en/wearables/wearable-soc.html",
   "license": "Apache-2.0",
+  "keywords": [
+      "dev-platform",
+      "Intel",
+      "ARC32"
+  ],
   "engines": {
     "platformio": "<5"
   },
