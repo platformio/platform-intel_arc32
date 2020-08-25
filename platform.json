@@ -30,16 +30,19 @@
   "packages": {
     "toolchain-intelarc32": {
       "type": "toolchain",
+      "owner": "platformio",
       "version": ">=1.40802.0,<1.40806.0"
     },
     "framework-arduinointel": {
       "type": "framework",
       "optional": true,
+      "owner": "platformio",
       "version": "~1.20002.0"
     },
     "tool-arduino101load": {
       "type": "uploader",
       "optional": true,
+      "owner": "platformio",
       "version": "~1.201.0"
     }
   }
