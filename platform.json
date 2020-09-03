@@ -10,17 +10,13 @@
       "ARC32"
   ],
   "engines": {
-    "platformio": "<5"
+    "platformio": "^5"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/platformio/platform-intel_arc32.git"
   },
   "version": "1.2.5",
-  "packageRepositories": [
-    "https://dl.bintray.com/platformio/dl-packages/manifest.json",
-    "http://dl.platformio.org/packages/manifest.json"
-  ],
   "frameworks": {
     "arduino": {
       "package": "framework-arduinointel",
