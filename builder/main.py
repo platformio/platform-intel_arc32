@@ -58,18 +58,25 @@ env.Replace(
     PROGSUFFIX=".elf"
 )
 
+machine_flags = [
+    "-mcpu=" + env.BoardConfig().get("build.cpu"),
+    "-mlittle-endian",
+    "-mno-sdata",
+]
+
 env.Append(
-    ASFLAGS=["-x", "assembler-with-cpp"],
+    ASFLAGS=machine_flags,
+    ASPPFLAGS=[
+        "-x", "assembler-with-cpp",
+    ],
 
     CFLAGS=["-std=gnu11"],
 
-    CCFLAGS=[
+    CCFLAGS=machine_flags + [
         "-Os",
         "-ffunction-sections",
         "-fdata-sections",
         "-Wall",
-        "-mlittle-endian",
-        "-mcpu=" + env.BoardConfig().get("build.cpu"),
         "-fno-reorder-functions",
         "-fno-asynchronous-unwind-tables",
         "-fno-omit-frame-pointer",
@@ -78,7 +85,6 @@ env.Append(
         "-Wno-main",
         "-ffreestanding",
         "-fno-stack-protector",
-        "-mno-sdata",
         "-fsigned-char"
     ],
 
@@ -103,12 +109,11 @@ env.Append(
         "HAS_SHARED_MEM"
     ],
 
-    LINKFLAGS=[
+    LINKFLAGS=machine_flags + [
         "-Os",
         "-Wl,--gc-sections",
         "-Wl,-X",
         "-Wl,-N",
-        "-Wl,-mcpu=" + env.BoardConfig().get("build.cpu"),
         "-Wl,-marcelf",
         "-static",
         "-nostdlib",
@@ -162,9 +167,6 @@ env.Append(
         )
     )
 )
-
-# copy CCFLAGS to ASFLAGS (-x assembler-with-cpp mode)
-env.Append(ASFLAGS=env.get("CCFLAGS", [])[:])
 
 # Allow user to override via pre:script
 if env.get("PROGNAME", "program") == "program":
